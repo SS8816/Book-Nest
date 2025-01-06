@@ -41,7 +41,7 @@ Using this information, Book Nest generates personalized suggestions, providing 
 
 
 
-## 🔧 Setup Instructions
+## Setup Instructions
 1. Clone the repository:
    ```bash
    git clone https://github.com/YOUR_USERNAME/Book-Nest.git
@@ -78,7 +78,7 @@ Book-Nest/
 ├── requirements.txt
 └── README.md
 
-## 🎯 Future Improvements
+## Future Improvements
 - **User Authentication** to save personalized recommendations
 - **Integration with Book APIs** for real-time data
 - **Review System** allowing users to rate books
