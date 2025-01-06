@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('/static/images/HighQ.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: #FAF3E0; /* Off-White */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: #FFD700; /* Gold */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            background-color: #5A3825; /* Deep Brown */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #FFD700; /* Gold on Hover */
+            transform: translateY(-5px);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        .button-container a {
+            text-decoration: none;
+        }
+
+        /* Adding responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            p {
+                font-size: 1.2rem;
+            }
+            .button-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Book Nest!</h1>
+    <p>A cozy place for book lovers to discover new reads</p>
+    <p>This is the homepage where you can explore and manage your preferences.</p>
+
+    <div class="button-container">
+        <!-- Check if the user is logged in -->
+        {% if session['user_id'] %}
+            <!-- Buttons visible to logged-in users -->
+            <a href="/profile"><button>Set Up Profile</button></a>
+            <a href="/recommendations"><button>View Recommendations</button></a>
+            <a href="/logout"><button>Logout</button></a>
+        {% else %}
+            <!-- Buttons visible to guests -->
+            <a href="/login"><button>Login</button></a>
+            <a href="/register"><button>Register</button></a>
+        {% endif %}
+    </div>
+</body>
+</html>

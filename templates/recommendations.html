@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <style>
+        /* Custom styles for a better look */
+        body {
+            background-color: #f8f9fa;
+            background: url('/static/images/HighQ.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding-top: 20px;
+        }
+        .list-group-item {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .list-group-item strong {
+            font-size: 1.2em;
+        }
+        .spinner-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Recommended Books</h1>
+        
+        <!-- Add a spinner as a loading placeholder -->
+        <div id="spinner" class="spinner-container" style="display: none;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <!-- Book recommendations list -->
+        {% if books %}
+            <ul class="list-group" id="book-list">
+                {% for book in books %}
+                    <li class="list-group-item">
+                        <strong>{{ book.title }}</strong> by {{ book.author.name }} 
+                        <br> <span class="text-muted">Genre: {{ book.genre.name }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="mt-4">
+                {{ pagination.links }}
+            </div>
+        {% else %}
+            <div class="alert alert-warning text-center">
+                <p>No recommendations available at the moment. Update your profile to get personalized recommendations!</p>
+                <a href="/profile" class="btn btn-primary mt-2">Update Profile</a>
+            </div>
+        {% endif %}
+        <a href="/" class="btn btn-secondary mt-3">Back to Homepage</a>
+    </div>
+
+    <script>
+        // Simulate loading spinner for a better user experience
+        document.addEventListener("DOMContentLoaded", function() {
+            const spinner = document.getElementById('spinner');
+            const bookList = document.getElementById('book-list');
+
+            if (bookList) {
+                spinner.style.display = 'none'; // Hide spinner once content is loaded
+            } else {
+                spinner.style.display = 'block'; // Show spinner while waiting for recommendations
+            }
+        });
+    </script>
+</body>
+</html>

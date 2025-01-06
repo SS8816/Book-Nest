@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Setup</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('/static/images/HighQ.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Change from center to start to keep space at the top */
+            height: 100vh;
+            overflow-y: auto; /* Enables scrolling if the content overflows */
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+            margin-top: 20px; /* Adds space from the top of the page */
+            overflow-y: auto; /* Ensures the content is scrollable if it overflows */
+            max-height: 90vh; /* Prevents the form from going off-screen */
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #34495e;
+            display: block;
+            margin: 15px 0 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .form-container {
+            width: 100%;
+        }
+
+        .form-container div {
+            margin-bottom: 20px;
+        }
+
+        .form-container select {
+            height: 150px;
+            resize: none;
+        }
+
+        .form-container button {
+            width: 50%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Complete Your Profile</h1>
+        <div class="form-container">
+            <form method="POST" action="/profile">
+                <div>
+                    <label for="genres">Select Your Favorite Genres:</label>
+                    <select name="genres" id="genres" multiple>
+                        {% for genre in genres %}
+                            <option value="{{ genre.id }}">{{ genre.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label for="authors">Select Your Favorite Authors:</label>
+                    <select name="authors" id="authors" multiple>
+                        {% for author in authors %}
+                            <option value="{{ author.id }}">{{ author.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label for="reading_history">Books You Have Read:</label>
+                    <select name="reading_history" id="reading_history" multiple>
+                        {% for book in books %}
+                            <option value="{{ book.id }}">{{ book.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label for="future_interests">Books You Want to Read:</label>
+                    <select name="future_interests" id="future_interests" multiple>
+                        {% for book in books %}
+                            <option value="{{ book.id }}">{{ book.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div style="text-align: center;">
+                    <button type="submit">Save Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
